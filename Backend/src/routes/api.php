@@ -13,7 +13,7 @@ Route::middleware('api')->post('/data', function (Request $request) {
 });
 
 // Ruta para obtener la lista de empleados
-Route::get('/empleados', [EmployeeController::class, 'index'])->name('empleados.index');
+Route::get('/empleados', [App\Http\Controllers\Api\EmployeeController::class, 'index'])->name('empleados.index');
 
 // Ruta para obtener un empleado por ID
 Route::get('/empleados/{id}', [EmployeeController::class, 'show'])->name('empleados.show');
