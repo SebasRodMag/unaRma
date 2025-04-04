@@ -9,8 +9,9 @@ class EmpleadoEspecilidad extends Model
 {
     use HasFactory;
 
-    /*protected $fillable = [
+    protected $table = 'empleado_especialidad';
+    public $fillable = [
         'empleado_id',
         'especialidad_id'
-    ];*/
+    ];
 }

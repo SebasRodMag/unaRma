@@ -1,4 +1,4 @@
-export interface Especialidad {
+export interface Specialty {
     id: number;
     nombre: string;
     created_at: Date;
