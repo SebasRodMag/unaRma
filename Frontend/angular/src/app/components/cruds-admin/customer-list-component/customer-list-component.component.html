@@ -1,0 +1,102 @@
+<!-- <button (click)="loadClients()" style="margin-top: 150px">CLIENTES</button> -->
+<div style="margin-top: 150px">
+  <form #updateFormLabel (ngSubmit)="loadClients()" [formGroup]="filterForm">
+    <input type="text" formControlName="nombre" placeholder="Nombre" />
+    <input type="text" formControlName="apellidos" placeholder="Apellidos" />
+    <input type="text" formControlName="tlf" placeholder="tlf" />
+    <input type="text" formControlName="DNI" placeholder="DNI" />
+    <input type="email" formControlName="email" placeholder="Email" />
+    <input type="number" formControlName="pagina" />
+    <input class="button" type="submit" value="CLIENTES" />
+  </form>
+<table style="margin-top: 10px">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Nombre</th>
+      <th>NombreUsuario</th>
+      <th>email</th>
+      <!--             <th>tlf</th>
+            <th>Direccion completa</th>
+            <th>DNI</th> -->
+      <th>contrasena</th>
+    </tr>
+  </thead>
+  @for (item of clientlist; track item.id) {
+  <tr class="Cliente-{{ item.id }}">
+    <td>{{ item.id }}</td>
+    <td>{{ item.nombre + " " + item.apellidos }}</td>
+    <td>{{ item.nombreUsuario }}</td>
+    <td>{{ item.email }}</td>
+    <!--             <td>{{item.tlf}}</td>
+            <td>{{item.provincia + ', ' + item.municipio + ', ' + item.direccion}}</td>
+            <td>{{item.DNI}}</td> -->
+    <td>{{ item.contrasena }}</td>
+    <td>
+      <button (click)="delete(item.id)" style="background-color: red; color: white">
+        Borrar cliente
+      </button>
+      <button (click)="showUpdateForm(item.id)" style="background-color: rgb(207, 159, 0); color: white">
+        Actualizar cliente
+      </button>
+    </td>
+  </tr>
+  }
+</table>
+
+@for (item of clientlist; track $index) {
+  <div id="updateForm{{item.id}}" style="display: none;">
+    <h3>Actualizar usuario {{item.nombre}}</h3>
+    <form #updateFormLabel (ngSubmit)="update(item.id)" [formGroup]="updateForm">
+      <input type="text" formControlName="nombre" placeholder="Nombre" />
+      <input type="text" formControlName="apellidos" placeholder="Apellidos" />
+      <input
+        type="text"
+        formControlName="nombreUsuario"
+        placeholder="Nombre usuario"
+      />
+      <input type="text" formControlName="provincia" placeholder="provincia" />
+      <input type="text" formControlName="municipio" placeholder="municipio" />
+      <input type="text" formControlName="direccion" placeholder="direccion" />
+      <input type="text" formControlName="tlf" placeholder="tlf" />
+      <input type="text" formControlName="DNI" placeholder="DNI" />
+      <input type="email" formControlName="email" placeholder="Email" />
+      <input
+        type="password"
+        formControlName="contrasena"
+        placeholder="Password"
+      />
+      <input class="button" type="submit" value="Update" />
+    </form>
+  </div>
+}
+
+<div id="addForm" >
+  <h2>Añadir usuario</h2>
+  <form #updateFormLabel (ngSubmit)="add()" [formGroup]="addForm">
+    <input type="text" formControlName="nombre" placeholder="Nombre" />
+    <input type="text" formControlName="apellidos" placeholder="Apellidos" />
+    <input
+      type="text"
+      formControlName="nombreUsuario"
+      placeholder="Nombre usuario"
+    />
+    <input type="text" formControlName="provincia" placeholder="provincia" />
+    <input type="text" formControlName="municipio" placeholder="municipio" />
+    <input type="text" formControlName="direccion" placeholder="direccion" />
+    <input type="text" formControlName="tlf" placeholder="tlf" />
+    <input type="text" formControlName="DNI" placeholder="DNI" />
+    <input type="email" formControlName="email" placeholder="Email" />
+    <input
+      type="password"
+      formControlName="contrasena"
+      placeholder="Password"
+    />
+    <input
+      type="password"
+      formControlName="contrasena_confirmation"
+      placeholder="Password"
+    />
+    <input class="button" type="submit" value="Update" />
+  </form>
+</div>

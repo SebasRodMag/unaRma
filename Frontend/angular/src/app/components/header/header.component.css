@@ -1,0 +1,113 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #222;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: top 0.3s ease-in-out;
+
+  /* Navegación la cabecera */
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+
+      li {
+        margin: 0 15px;
+        position: relative;
+        transition: transform 0.3s ease-in-out;
+
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 18px;
+          transition: color 0.3s ease;
+          font-family: "Maxlock", sans-serif;
+        }
+
+        a:hover {
+          color: #ffffff;
+        }
+      }
+
+      li:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  /* Imagen del logotipo */
+  .imagen {
+    width: 100px;
+    height: auto;
+    border-radius: 6%;
+    transition: transform 0.5s ease;
+  }
+
+  .imagen:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Menú responsive */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+
+  div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+  }
+}
+
+/* Diseño responsivo */
+@media (max-width: 500px) {
+  nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #333;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
+
+/*vista horizontal*/
+@media (orientation: landscape) and (max-width: 760px) {
+  header {
+    height: 35px;
+  }
+}
+@media (orientation: landscape) and (min-width: 1024px) {
+  header {
+    height: 120px;
+  }
+}

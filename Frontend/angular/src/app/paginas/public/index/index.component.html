@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<app-head />
+<body>
+  <app-header />
+  <!-- Cuerpo de la pagina-->
+  <main>
+    <app-parallax />
+    <section id="inicio" class="sectionIndex">
+      <div class="contenido">
+        <div class="textoBarberia">
+          <h2>Bienvenidos a Barbers</h2>
+          <p>
+            En Peluquería Barbers, creemos que un buen corte de cabello no solo
+            cambia tu apariencia, sino que también eleva tu confianza y te ayuda
+            a sentirte como mejor te ves. Nuestra barbería es un lugar donde la
+            tradición se encuentra con las últimas tendencias, ofreciendo una
+            experiencia única de estilo y cuidado personal.
+          </p>
+          <p>
+            Ven y disfruta de un servicio excepcional. ¡Haz tu cita y
+            experimenta lo mejor del cuidado masculino en un solo lugar!
+          </p>
+        </div>
+        <div>
+          <img src="img/inicio/barberia.jpg" alt="Imagen de Barbería" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Pie de pagina -->
+  <app-footer />
+</body>
+
+<script>
+  //Declarciones
+  let lastScrollTop = 0;
+  let isScrolling;
+  const header = document.querySelector("header");
+
+  // Oculta y muestra el header al hacer scroll
+  window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+      header.style.top = "-100px"; // Ajusta según el tamaño de tu cabecera
+    } else {
+      header.style.top = "0";
+    }
+
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(function () {
+      header.style.top = "0";
+    }, 1000);
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
+  // Función para mostrar u ocultar el menú en móviles
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.classList.toggle("active");
+  }
+</script>
+</html>
