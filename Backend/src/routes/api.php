@@ -13,40 +13,40 @@ Route::middleware('api')->post('/data', function (Request $request) {
 });
 
 // Ruta para obtener la lista de empleados
-Route::get('/empleados', [EmpleadoController::class, 'index'])->name('empleados.index');
+Route::get('/empleados', [EmployeeController::class, 'index'])->name('empleados.index');
 
 // Ruta para obtener un empleado por ID
-Route::get('/empleados/{id}', [EmpleadoController::class, 'show'])->name('empleados.show');
+Route::get('/empleados/{id}', [EmployeeController::class, 'show'])->name('empleados.show');
 
 // Ruta para crear un nuevo empleado
-Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
+Route::post('/empleados', [EmployeeController::class, 'store'])->name('empleados.store');
 
 // Ruta para actualizar un empleado existente
-Route::put('/empleados/{id}', [EmpleadoController::class, 'update'])->name('empleados.update');
+Route::put('/empleados/{id}', [EmployeeController::class, 'update'])->name('empleados.update');
 
 // Ruta para eliminar un empleado
-Route::delete('/empleados/{id}', [EmpleadoController::class, 'destroy'])->name('empleados.destroy');
+Route::delete('/empleados/{id}', [EmployeeController::class, 'destroy'])->name('empleados.destroy');
 
 // Ruta para obtener todas las especialidades
-Route::get('/especialidades', [EspecialidadController::class, 'index'])->name('especialidades.index');
+Route::get('/especialidades', [SpecialtyController::class, 'index'])->name('especialidades.index');
 
 // Ruta para obtener una especialidad por ID
-Route::get('/especialidades/{id}', [EspecialidadController::class, 'show'])->name('especialidades.show');
+Route::get('/especialidades/{id}', [SpecialtyController::class, 'show'])->name('especialidades.show');
 
 // Ruta para crear una nueva especialidad
-Route::post('/especialidades', [EspecialidadController::class, 'store'])->name('especialidades.store');
+Route::post('/especialidades', [SpecialtyController::class, 'store'])->name('especialidades.store');
 
 // Ruta para actualizar una especialidad existente
-Route::put('/especialidades/{id}', [EspecialidadController::class, 'update'])->name('especialidades.update');
+Route::put('/especialidades/{id}', [SpecialtyController::class, 'update'])->name('especialidades.update');
 
 // Ruta para eliminar una especialidad
-Route::delete('/especialidades/{id}', [EspecialidadController::class, 'destroy'])->name('especialidades.destroy');
+Route::delete('/especialidades/{id}', [SpecialtyController::class, 'destroy'])->name('especialidades.destroy');
 
 // Ruta para asignar un especialidad a un empleado
-Route::post('/empleados/{empleadoId}/especialidades/{especialidadId}', [EmpleadoEspecialidadController::class, 'asignarEspecialidad']);
+Route::post('/empleados/{empleadoId}/especialidades/{especialidadId}', [EmployeeSpecialtyController::class, 'asignarEspecialidad']);
 
 // Ruta para eliminar una especialidad de un empleado
-Route::delete('/empleados/{empleadoId}/especialidades/{especialidadId}', [EmpleadoEspecialidadController::class, 'eliminarEspecialidad']);
+Route::delete('/empleados/{empleadoId}/especialidades/{especialidadId}', [EmployeeSpecialtyController::class, 'eliminarEspecialidad']);
 
 // Ruta para obtener las especialidades de un empleado
-Route::get('/empleados/{empleadoId}/especialidades', [EmpleadoEspecialidadController::class, 'obtenerEspecialidadesEmpleado']);
+Route::get('/empleados/{empleadoId}/especialidades', [EmployeeSpecialtyController::class, 'obtenerEspecialidadesEmpleado']);
