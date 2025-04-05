@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\SpecialtyController;
+use App\Http\Controllers\Api\EmployeeSpecialtyController;
 
 // Ruta de ejemplo para la API
 Route::get('register', [AuthController::class, 'register']);
@@ -13,7 +16,7 @@ Route::middleware('api')->post('/data', function (Request $request) {
 });
 
 // Ruta para obtener la lista de empleados
-Route::get('/empleados', [App\Http\Controllers\Api\EmployeeController::class, 'index'])->name('empleados.index');
+Route::get('/empleados', [EmployeeController::class, 'index'])->name('empleados.index');
 
 // Ruta para obtener un empleado por ID
 Route::get('/empleados/{id}', [EmployeeController::class, 'show'])->name('empleados.show');

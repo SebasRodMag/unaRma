@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Employee;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
