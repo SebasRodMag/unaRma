@@ -44,7 +44,17 @@ class EmployeeSpecialtyController extends Controller
         $empleado->especialidades()->syncWithoutDetaching($especialidadIds);
         
         // Retornar las especialidades del empleado
-        return response()->json($empleado->especialidades, 200);
+        //return response()->json($empleado->especialidades, 200);
+
+        // Obtener especialidades con los campos deseados
+        $especialidades = $empleado->especialidades()->select('especialidades.id', 'nombre')->get();
+
+        return response()->json([
+            'empleado_id' => $empleado->id,
+            'nombre_empleado' => $empleado->nombre,  //Verificar que el campo nombre existe en el modelo Empleado
+            'especialidades_asignadas' => $especialidades
+        ], 200);
+
     }
 
     /**
@@ -58,15 +68,26 @@ class EmployeeSpecialtyController extends Controller
             return response()->json(['message' => 'Empleado no encontrado con ID ' . $empleadoId], 404);
         }
 
-        $especialidades = $empleado->especialidades;
+        //$especialidades = $empleado->especialidades;
+        $especialidades = $empleado->especialidades()->select('especialidades.id', 'nombre')->get();
 
         // Verificar si el empleado tiene especialidades asignadas
         if ($especialidades->isEmpty()) {
-            return response()->json(['message' => 'No hay especialidades asignadas al empleado con ID ' . $empleadoId], 404);
+            //return response()->json(['message' => 'No hay especialidades asignadas al empleado con ID ' . $empleadoId], 404);
+            return response()->json([
+                'empleado_id' => $empleado->id,
+                'nombre_empleado' => $empleado->nombre,
+                'message' => 'No hay especialidades asignadas.'
+            ], 404);
         }
 
         // Retornar las especialidades del empleado
-        return response()->json($especialidades, 200);
+        //return response()->json($especialidades, 200);
+        return response()->json([
+            'empleado_id' => $empleado->id,
+            'nombre_empleado' => $empleado->nombre,
+            'especialidades' => $especialidades
+        ], 200);
     }
 
     /**
@@ -77,10 +98,16 @@ class EmployeeSpecialtyController extends Controller
         $empleado = Empleado::findOrFail($empleadoId);
         
         // Verificar si la especialidad está asignada al empleado
-        if ($empleado->especialidades()->where('especialidads.id', $especialidadId)->exists()) {
+        if ($empleado->especialidades()->where('especialidades.id', $especialidadId)->exists()) {
             // Eliminar la especialidad
             $empleado->especialidades()->detach($especialidadId);
-            return response()->json(['message' => 'Especialidad ID ' . $especialidadId . ' eliminada correctamente del empleado ID ' . $empleadoId], 200);
+            //return response()->json(['message' => 'Especialidad ID ' . $especialidadId . ' eliminada correctamente del empleado ID ' . $empleadoId], 200);
+            return response()->json([
+                'message' => 'Especialidad eliminada del empleado.',
+                'empleado_id' => $empleado->id,
+                'nombre_empleado' => $empleado->nombre,
+                'especialidad_eliminada_id' => $especialidadId
+            ], 200);
         } else {
             // La especialidad no existe para el empleado
             return response()->json(['message' => 'No existe la especialidad ID ' . $especialidadId . ' en el empleado ID ' . $empleadoId], 404);

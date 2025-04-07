@@ -7,7 +7,7 @@ use App\Models\CitaServicio;
 use App\Models\Cliente;
 use App\Models\Contrato;
 use App\Models\Empleado;
-use App\Models\EmpleadoEspecilidad;
+use App\Models\EmpleadoEspecialidad;
 use App\Models\Especialidad;
 use App\Models\Servicio;
 use App\Models\Usuario;
@@ -32,7 +32,7 @@ class StressTestSeeder extends Seeder
         Usuario::factory(3)->has(
             Empleado::factory()
         )->create();
-        EmpleadoEspecilidad::factory(3)->create();
+        EmpleadoEspecialidad::factory(3)->create();
         Servicio::factory(3)->create();
         Cita::factory(30000)->create();
         //CitaServicio::factory(random_int(60000, 100000))->create();

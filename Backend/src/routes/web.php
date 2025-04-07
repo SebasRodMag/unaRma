@@ -55,12 +55,12 @@ Route::put('contracts/{contractId}', [ContractController::class, 'update']);
 Route::delete('contracts/{contractId}', [ContractController::class, 'delete']);
 
 //Empleados
-Route::post('employees', [EmployeeController::class, 'add']);
-Route::post('{id}/employees', [EmployeeController::class, 'addEmployee']);
-Route::get('employees', [EmployeeController::class, 'show']);
-Route::get('employees/{id}', [EmployeeController::class, 'getEmployee']);
+Route::post('employees', [EmployeeController::class, 'store']);
+//Route::post('{id}/employees', [EmployeeController::class, 'addEmployee']); Este método no esta implementado
+Route::get('employees/{id}', [EmployeeController::class, 'show']);
+Route::get('employees', [EmployeeController::class, 'index']);
 Route::put('employees/{id}', [EmployeeController::class, 'update']);
-Route::delete('employees/{id}', [EmployeeController::class, 'delete']);
+Route::delete('employees/{id}', [EmployeeController::class, 'destroy']);
 
 //Citas
 Route::post('appointments', [AppointmentController::class, 'add']);
@@ -73,7 +73,7 @@ Route::post('appointments', [AppointmentController::class, 'add']);
  *      take: el numero de lineas que ensenara/limitara la query, por ejemplo take(5) solo ensena 5 lineas
  *      withServicios: un booleano falso, escribe un string "true" para enseñar los servicios asociados a su cita, cualquier otra cosa para no hacerlo 
  * 
- * Se manda con parametros, que toman forma de por ejemplo "appointments?nombreCliente=Rafa&nombre_empleado:Alicia"
+ * Se manda con parámetros, que toman forma de por ejemplo "appointments?nombreCliente=Rafa&nombre_empleado:Alicia"
  */
 Route::get('appointments',[AppointmentController::class, 'show']);
 Route::get('appointments/{id}/{withServicios}', [AppointmentController::class, 'getAppointment']);
@@ -88,13 +88,13 @@ Route::put('services/{id}', [ServiceController::class, 'update']);
 Route::delete('services/{id}', [ServiceController::class, 'delete']);
 
 // Especialidades
-Route::post('specialties', [SpecialtyController::class, 'add']);
-Route::get('specialties', [SpecialtyController::class, 'show']);
-Route::get('specialties/{id}', [SpecialtyController::class, 'getSpecialty']);
+Route::post('specialties', [SpecialtyController::class, 'store']);
+Route::get('specialties', [SpecialtyController::class, 'index']);
+Route::get('specialties/{id}', [SpecialtyController::class, 'show']);
 Route::put('specialties/{id}', [SpecialtyController::class, 'update']);
-Route::delete('specialties/{id}', [SpecialtyController::class, 'delete']);
+Route::delete('specialties/{id}', [SpecialtyController::class, 'destroy']);
 
 // Rutas para asignar especialidades a empleados
-Route::post('employees/{employee}/specialties', [EmployeeSpecialtyController::class, 'assign']);
-Route::get('employees/{employee}/specialties', [EmployeeSpecialtyController::class, 'list']);
-Route::delete('employees/{employee}/specialties/{specialty}', [EmployeeSpecialtyController::class, 'delete']);
+Route::post('employees/{employee}/specialties/{specialtyId}', [EmployeeSpecialtyController::class, 'asignarEspecialidad']);
+Route::get('employees/{employee}/specialties', [EmployeeSpecialtyController::class, 'obtenerEspecialidadesEmpleado']);
+Route::delete('employees/{employee}/specialties/{specialtyId}', [EmployeeSpecialtyController::class, 'eliminarEspecialidad']);

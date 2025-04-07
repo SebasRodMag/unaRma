@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
 
-    public function index()
-{
+public function index(){
     try {
         // Obtener todos los empleados
         $empleados = Empleado::with('usuario')->get();
@@ -21,8 +20,7 @@ class EmployeeController extends Controller
     }
 }
     
-    public function show($id)
-{
+public function show($id){
     try {
         // Buscar el empleado por su ID
         $empleado = Empleado::with('usuario')->findOrFail($id);
@@ -38,8 +36,7 @@ class EmployeeController extends Controller
     }
 }
 
-    public function store(Request $request)
-{
+public function store(Request $request){
     // Reglas de validación para los datos del empleado
     $rules = [
         'DNI' => 'required|string|size:9|regex:/^\d{8}[A-Z]$/',
@@ -145,8 +142,7 @@ class EmployeeController extends Controller
     }
 }
 
-public function update(Request $request, $id)
-{
+public function update(Request $request, $id){
     // Reglas de validación para los datos del empleado
     $rules = [
         'DNI' => 'required|string|size:9|regex:/^\d{8}[A-Z]$/',
@@ -230,17 +226,16 @@ public function update(Request $request, $id)
     }
 }
 
-    public function destroy($id)
-    //Eliminamos al empleado, no al usuario
-    {
-        try {
-            $empleado = Empleado::findOrFail($id);
-            $empleado->delete();
-            return response()->json(null, 204);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json(['message' => 'Empleado no encontrado.'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Error al eliminar el empleado: ' . $e->getMessage()], 500);
-        }
+public function destroy($id){
+//Eliminamos al empleado, no al usuario
+    try {
+        $empleado = Empleado::findOrFail($id);
+        $empleado->delete();
+        return response()->json(null, 204);
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        return response()->json(['message' => 'Empleado no encontrado.'], 404);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Error al eliminar el empleado: ' . $e->getMessage()], 500);
     }
+}
 }

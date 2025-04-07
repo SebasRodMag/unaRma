@@ -15,15 +15,6 @@ class Especialidad extends Model
     ];
     use HasFactory, Notifiable;
     /**
-     * Get the empleado that owns the Especialidad
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function empleado(): BelongsTo
-    {
-        return $this->belongsTo(Empleado::class);
-    }
-    /**
      * The empleados that belong to the Especialidad
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

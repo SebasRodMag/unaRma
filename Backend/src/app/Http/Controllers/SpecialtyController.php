@@ -15,7 +15,7 @@ class SpecialtyController extends Controller
      */
     public function add(Request $request) {
         $request->validate(
-            ['nombre' => 'required|string|unique:especialidads'],
+            ['nombre' => 'required|string|unique:especialidades'],
             ['nombre.string' => 'El nombre de la especialidad debe ser una cadena de texto.',
             'nombre.unique' => 'Ya existe esta especialidad.']
         );
@@ -41,7 +41,7 @@ class SpecialtyController extends Controller
      */
     public function update(Request $request, $id) {
         $especialidad = Especialidad::findOrFail($id);
-        $request->validate(['nombre' => 'required|string|unique:especialidads,nombre,' . $id],
+        $request->validate(['nombre' => 'required|string|unique:especialidades,nombre,' . $id],
         [
             'nombre.string' => 'El nombre tiene que ser una cadena de texto.',
             'nombre.unique' => 'Esta especialidad ya existe.'
