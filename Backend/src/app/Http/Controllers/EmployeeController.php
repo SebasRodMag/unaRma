@@ -9,15 +9,20 @@ class EmployeeController extends Controller
 {
 
 public function index(){
-    try {
+    /* try {
+        Log::info('Entrando al método index de EmployeeController');
         // Obtener todos los empleados
         $empleados = Empleado::with('usuario')->get();
-
+        //$empleados = Empleado::with('usuario')->paginate(10); // Paginar resultados
+        Log::info('Consulta ejecutada correctamente');
         return response()->json($empleados, 200);
 
     } catch (\Exception $e) {
+        Log::error('Error en el método index: ' . $e->getMessage());
         return response()->json(['message' => 'Error al obtener la lista de empleados: ' . $e->getMessage()], 500);
-    }
+    } */
+    $empleados = Empleado::all(); // Sin relaciones
+    return response()->json($empleados, 200);
 }
     
 public function show($id){

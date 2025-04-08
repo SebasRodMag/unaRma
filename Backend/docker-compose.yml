@@ -54,3 +54,20 @@ services:
             - mysql
         networks: 
             - laravel
+
+    myadmin:
+        image: phpmyadmin
+        container_name: myadmin
+        restart: unless-stopped
+        tty: true
+        ports: 
+            - 8080:80
+        environment: 
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: root
+        networks: 
+            - laravel
+
+    ## Usuario: user
+    ## Password: user
