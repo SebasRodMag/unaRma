@@ -17,13 +17,13 @@ class EmpleadoEspecialidadFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
-        $empleado_id = Empleado::pluck('id')->toArray();
-        $especialidad_id = Especialidad::pluck('id')->toArray();
+{
+    $empleado_id = Empleado::pluck('id')->toArray();
+    $especialidad_id = Especialidad::pluck('id')->toArray();
 
-        return [
-            'empleado_id' => fake()->numberBetween(1, count($empleado_id))/* ->randomElement($empleado_id) */,
-            'especialidad_id' => fake()->unique()->numberBetween(1, count($empleado_id)),
-        ];
-    }
+    return [
+        'empleado_id' => fake()->randomElement($empleado_id),
+        'especialidad_id' => fake()->randomElement($especialidad_id),
+    ];
+}
 }

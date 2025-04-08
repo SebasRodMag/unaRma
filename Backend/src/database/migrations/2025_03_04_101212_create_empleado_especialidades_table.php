@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('empleado_especialidades', function (Blueprint $table) {
             $table->id();
             $table->foreignId('empleado_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('especialidad_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('especialidad_id')->constrained('especialidades')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

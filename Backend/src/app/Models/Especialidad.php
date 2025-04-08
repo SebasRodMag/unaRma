@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Especialidad extends Model
 {
+    protected $table = 'especialidades';
     protected $fillable = [
         'nombre',
     ];
